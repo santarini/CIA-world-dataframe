@@ -7,7 +7,11 @@ import re
 response = requests.get('https://www.cia.gov/library/publications/the-world-factbook/geos/af.html')
 soup = bs.BeautifulSoup(response.text, 'lxml')
 countrySelection = soup.find('select')
+#print(countrySelection)
 for row in countrySelection.findAll('option'):
-    countryCode = re.search('<option value="../geos/(.*).html">', str(row))
+    valueStr = row.get('value')
+    start = "../geos/"
+    end = ".html"
+    countryCode = valueStr[len(start):-len(end)]
     print(countryCode)
     print(row.text)
