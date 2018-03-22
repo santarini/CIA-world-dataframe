@@ -13,10 +13,13 @@ response = requests.get('https://www.cia.gov/library/publications/the-world-fact
 soup = bs.BeautifulSoup(response.text, 'lxml')
 mainBlock = soup.find("div", {"class": "main-block"})
 expandcollapse = mainBlock.find("ul", {"class": "expandcollapse"})
+
+#most data points are found in People and Society Section but the other two sections are mapped here just in case
 #introductionSection = expandcollapse.findAll('li')[1]
-geographySection = expandcollapse.findAll('li')[3]
+#geographySection = expandcollapse.findAll('li')[3]
 peopleAndSocietySection = expandcollapse.findAll('li')[5]
-#population
+
+#data points mapped in order of appearance on webpage
 population = peopleAndSocietySection.findAll("div", {"class": "category_data"})[0]
 totalMedianAge = peopleAndSocietySection.findAll("span", {"class": "category_data"})[15]
 maleMedianAge = peopleAndSocietySection.findAll("span", {"class": "category_data"})[16]
@@ -42,5 +45,3 @@ GDPRealGrowth = peopleAndSocietySection.findAll("div", {"class": "category_data"
 GDPPerCapita = peopleAndSocietySection.findAll("div", {"class": "category_data"})[59]
 
 print(GDPPerCapita)
-
-
