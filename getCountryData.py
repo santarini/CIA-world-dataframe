@@ -30,4 +30,17 @@ motherMeanAgeAtBirth = peopleAndSocietySection.findAll("div", {"class": "categor
 maternalMortalityRate = peopleAndSocietySection.findAll("div", {"class": "category_data"})[11]
 totalInfantMortalityRate = peopleAndSocietySection.findAll("span", {"class": "category_data"})[34]
 totalLifeExpectancy =peopleAndSocietySection.findAll("span", {"class": "category_data"})[38]
-print(totalLifeExpectancy)
+longName = peopleAndSocietySection.findAll("span", {"class": "category_data"})[61]
+shortName = peopleAndSocietySection.findAll("span", {"class": "category_data"})[62]
+govType = peopleAndSocietySection.findAll("div", {"class": "category_data"})[35]
+capital = peopleAndSocietySection.findAll("span", {"class": "category_data"})[67]
+timeCode = peopleAndSocietySection.findAll("span", {"class": "category_data"})[69]
+indDay = peopleAndSocietySection.findAll("div", {"class": "category_data"})[37]
+natHoliday = peopleAndSocietySection.findAll("div", {"class": "category_data"})[38]
+GDP = peopleAndSocietySection.findAll("div", {"class": "category_data"})[52]
+GDPRealGrowth = peopleAndSocietySection.findAll("div", {"class": "category_data"})[56]
+GDPPerCapita = peopleAndSocietySection.findAll("div", {"class": "category_data"})[59]
+
+print(GDPPerCapita)
+
+
