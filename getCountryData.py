@@ -18,7 +18,16 @@ geographySection = expandcollapse.findAll('li')[3]
 peopleAndSocietySection = expandcollapse.findAll('li')[5]
 #population
 population = peopleAndSocietySection.findAll("div", {"class": "category_data"})[0]
+totalMedianAge = peopleAndSocietySection.findAll("span", {"class": "category_data"})[15]
+maleMedianAge = peopleAndSocietySection.findAll("span", {"class": "category_data"})[16]
+femaleMedianAge = peopleAndSocietySection.findAll("span", {"class": "category_data"})[17]
 populationGrowthRate = peopleAndSocietySection.findAll("div", {"class": "category_data"})[4]
 birthRate = peopleAndSocietySection.findAll("div", {"class": "category_data"})[5]
 deathRate = peopleAndSocietySection.findAll("div", {"class": "category_data"})[6]
-print(deathRate)
+netMigration = peopleAndSocietySection.findAll("div", {"class": "category_data"})[7]
+totalSexRatio = peopleAndSocietySection.findAll("span", {"class": "category_data"})[31]
+motherMeanAgeAtBirth = peopleAndSocietySection.findAll("div", {"class": "category_data"})[10]
+maternalMortalityRate = peopleAndSocietySection.findAll("div", {"class": "category_data"})[11]
+totalInfantMortalityRate = peopleAndSocietySection.findAll("span", {"class": "category_data"})[34]
+totalLifeExpectancy =peopleAndSocietySection.findAll("span", {"class": "category_data"})[38]
+print(totalLifeExpectancy)
