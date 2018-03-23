@@ -6,8 +6,8 @@ import re
 
 with open("cleanCountries.csv") as csvfileA:
     reader = csv.DictReader(csvfileA)
-    with open('countryPop.csv', 'a') as csvfileB:
-        fieldnames = ['Country', 'Code','Population', 'Population Growth Rate']
+    with open('countryData.csv', 'a') as csvfileB:
+        fieldnames = ['Code', 'Short Name','Long Name','Population', 'Population Growth Rate', 'GDP (PPP)', 'GDP per Capita', 'GDP Growth Rate']
         writer = csv.DictWriter(csvfileB, fieldnames=fieldnames, lineterminator = '\n')
         writer.writeheader()
         for row in reader:
@@ -100,5 +100,4 @@ with open("cleanCountries.csv") as csvfileA:
             
             
             #print to csv
-            writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population, 'Population Growth Rate': populationGrowth})
-
+            writer.writerow({'Code': countryCode, 'Short Name': shortName,'Long Name': longName,'Population': population, 'Population Growth Rate': populationGrowth, 'GDP (PPP)':GDPppp , 'GDP per Capita':GDPcapita, 'GDP Growth Rate':GDPgrowth})
