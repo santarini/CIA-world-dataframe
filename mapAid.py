@@ -16,7 +16,7 @@ with open("cleanCountries.csv") as csvfileA:
                 
         #population growth rate
         if "Population growth rate:" not in soup.text:
-            populationGrowth = 'None'
+            populationGrowth = 'Not listed'
         else:
             populationGrowth = soup.body.find(text='Population growth rate:').findNext('div')
             populationGrowth = populationGrowth.text
@@ -26,8 +26,8 @@ with open("cleanCountries.csv") as csvfileA:
 
         #Country name:
         if "Country name:" not in soup.text:
-            shortName = 'None'
-            longName = 'None'
+            shortName = 'Not listed'
+            longName = 'Not listed'
         else:
             longName = soup.body.find(text='Country name:').findNext('div')
             longName = longName.text
@@ -40,7 +40,7 @@ with open("cleanCountries.csv") as csvfileA:
 
         #GDP (purchasing power parity):
         if "GDP (purchasing power parity):" not in soup.text:
-            GDPppp = 'None'
+            GDPppp = 'Not listed'
         else:
             GDPppp = soup.body.find(text='GDP (purchasing power parity):').findNext('div')
             GDPppp = GDPppp.text
@@ -63,7 +63,7 @@ with open("cleanCountries.csv") as csvfileA:
 
         #GDP - per capita (PPP):
         if "GDP - per capita (PPP):" not in soup.text:
-            GDPcapita = 'None'
+            GDPcapita = 'Not listed'
         else:
             GDPcapita = soup.body.find(text='GDP - per capita (PPP):').findNext('div')
             GDPcapita = GDPcapita.text
@@ -74,7 +74,7 @@ with open("cleanCountries.csv") as csvfileA:
 
         #GDP - real growth rate:
         if "GDP - real growth rate:" not in soup.text:
-            GDPgrowth = 'None'
+            GDPgrowth = 'Not listed'
         else:
             GDPgrowth = soup.body.find(text='GDP - real growth rate:').findNext('div')
             GDPgrowth = GDPgrowth.text
