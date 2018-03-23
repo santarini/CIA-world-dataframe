@@ -16,6 +16,20 @@ with open("cleanCountries.csv") as csvfileA:
             response = requests.get('https://www.cia.gov/library/publications/the-world-factbook/geos/' + countryCode +'.html')
             soup = bs.BeautifulSoup(response.text, 'lxml')
 
+            #Country name long and short:
+            if "Country name:" not in soup.text:
+                shortName = 'None'
+                longName = 'None'
+            else:
+                longName = soup.body.find(text='Country name:').findNext('div')
+                longName = longName.text
+                shortName = soup.body.find(text='Country name:').findNext('div').findNext('div')
+                shortName = shortName.text
+            if "conventional long form: " in longName:
+                longName = longName.split('conventional long form: ')[1]
+            if "conventional short form: " in shortName:
+                shortName = shortName.split('conventional short form: ')[1]
+                
             #population data
             population = soup.body.find(text='Population:').findNext('div')
             population = population.text
