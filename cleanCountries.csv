@@ -1,4 +1,5 @@
 Country,Code
+World,xx
 Afghanistan,af
 Albania,al
 Algeria,ag
@@ -235,7 +236,6 @@ Virgin Islands,vq
 Wallis and Futuna,wf
 West Bank,we
 Western Sahara,wi
-World,xx
 Yemen,ym
 Zambia,za
 Zimbabwe,zi
