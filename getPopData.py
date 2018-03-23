@@ -79,13 +79,13 @@ with open("cleanCountries.csv") as csvfileA:
                 
             #GDP - real growth rate:
             if "GDP - real growth rate:" not in soup.text:
-                GDPcapita = 'None'
+                GDPgrowth = 'None'
             else:
-                GDPcapita = soup.body.find(text='GDP - real growth rate:').findNext('div')
-                GDPcapita = GDPcapita.text
-            if "(" in GDPcapita:
-                GDPcapitaDateEst = GDPcapita.split('(')[1]
-                GDPcapita = GDPcapita.split('(')[0]
+                GDPgrowth = soup.body.find(text='GDP - real growth rate:').findNext('div')
+                GDPgrowth = GDPgrowth.text
+            if "(" in GDPgrowth:
+                GDPgrowthaDateEst = GDPgrowth.split('(')[1]
+                GDPgrowth = GDPgrowth.split('(')[0]
             
             
             #print to csv
