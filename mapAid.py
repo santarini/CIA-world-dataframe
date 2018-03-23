@@ -50,15 +50,14 @@ with open("cleanCountries.csv") as csvfileA:
             GDPppp = GDPppp.split('million')[0]
             GDPppp = GDPppp[1:]
             GDPppp = float(GDPppp) * 1000000
-        if "billion" in GDPppp:
+        elif "billion" in GDPppp:
             GDPppp = GDPppp.split('billion')[0]
             GDPppp = GDPppp[1:]
             GDPppp = float(GDPppp) * 1000000000
-####            GDPppp = float(GDPppp) * 1000000000
-##        if "trillion" in GDPppp:
-##            GDPppp = GDPppp.split('trillion')[0]
-##            GDPppp = GDPppp[1:]
-##            GDPppp = float(GDPppp)
-####            GDPppp = int(GDPppp) * 1000000000000
+        elif "trillion" in GDPppp:
+            GDPppp = GDPppp.split('trillion')[0]
+            GDPppp = GDPppp[1:]
+            GDPppp = float(GDPppp)
+            GDPppp = int(GDPppp) * 1000000000000
 
         print(GDPppp)
