@@ -3,6 +3,7 @@ import requests
 import bs4 as bs
 import csv
 import re
+import math
 
 
 with open("cleanCountries.csv") as csvfileA:
@@ -49,15 +50,15 @@ with open("cleanCountries.csv") as csvfileA:
         if "million" in GDPppp:
             GDPppp = GDPppp.split('million')[0]
             GDPppp = GDPppp[1:]
-            GDPppp = float(GDPppp) * 1000000
+            GDPppp = float(GDPppp) * 10**6
         elif "billion" in GDPppp:
             GDPppp = GDPppp.split('billion')[0]
             GDPppp = GDPppp[1:]
-            GDPppp = float(GDPppp) * 1000000000
+            GDPppp = float(GDPppp) * 10**9
         elif "trillion" in GDPppp:
             GDPppp = GDPppp.split('trillion')[0]
             GDPppp = GDPppp[1:]
             GDPppp = float(GDPppp)
-            GDPppp = int(GDPppp) * 1000000000000
+            GDPppp = int(GDPppp) * 10**12
 
         print(GDPppp)
