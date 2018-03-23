@@ -76,6 +76,16 @@ with open("cleanCountries.csv") as csvfileA:
                 GDPppp = GDPppp[1:]
                 GDPppp = float(GDPppp)
                 GDPppp = int(GDPppp) * 10**12
+                
+            #GDP - real growth rate:
+            if "GDP - real growth rate:" not in soup.text:
+                GDPcapita = 'None'
+            else:
+                GDPcapita = soup.body.find(text='GDP - real growth rate:').findNext('div')
+                GDPcapita = GDPcapita.text
+            if "(" in GDPcapita:
+                GDPcapitaDateEst = GDPcapita.split('(')[1]
+                GDPcapita = GDPcapita.split('(')[0]
             
             
             #print to csv
