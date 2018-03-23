@@ -7,11 +7,11 @@ import re
 with open("cleanCountries.csv") as csvfileA:
     reader = csv.DictReader(csvfileA)
     with open('countryData.csv', 'a') as csvfileB:
-        fieldnames = ['Code', 'Short Name','Long Name','Population', 'Population Growth Rate', 'GDP (PPP)', 'GDP per Capita', 'GDP Growth Rate']
+        fieldnames = ['Region','Code', 'Short Name','Long Name','Population', 'Population Growth Rate', 'GDP (PPP)', 'GDP per Capita', 'GDP Growth Rate']
         writer = csv.DictWriter(csvfileB, fieldnames=fieldnames, lineterminator = '\n')
         writer.writeheader()
         for row in reader:
-            countryName = (row['Country'])
+            regionName = (row['Country'])
             countryCode = (row['Code'])
             response = requests.get('https://www.cia.gov/library/publications/the-world-factbook/geos/' + countryCode +'.html')
             soup = bs.BeautifulSoup(response.text, 'lxml')
@@ -100,4 +100,5 @@ with open("cleanCountries.csv") as csvfileA:
             
             
             #print to csv
-            writer.writerow({'Code': countryCode, 'Short Name': shortName,'Long Name': longName,'Population': population, 'Population Growth Rate': populationGrowth, 'GDP (PPP)':GDPppp , 'GDP per Capita':GDPcapita, 'GDP Growth Rate':GDPgrowth})
+            writer.writerow({'Region': regionName,'Code': countryCode, 'Short Name': shortName,'Long Name': longName,'Population': population, 'Population Growth Rate': populationGrowth, 'GDP (PPP)':GDPppp , 'GDP per Capita':GDPcapita, 'GDP Growth Rate':GDPgrowth})
+            
