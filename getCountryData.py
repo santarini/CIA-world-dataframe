@@ -42,7 +42,7 @@ with open("cleanCountries.csv") as csvfileA:
                 population = population.split('United Kingdom')[1]
             if "million" in population:
                 population = population.split(' million')[0]
-                population = (float(population) * 1000000)
+                population = (float(population) * 10**6)
 
             #population growth rate
             if "Population growth rate:" not in soup.text:
