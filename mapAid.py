@@ -61,6 +61,17 @@ with open("cleanCountries.csv") as csvfileA:
             GDPppp = float(GDPppp)
             GDPppp = int(GDPppp) * 10**12
 
+        #GDP - per capita (PPP):
+        if "GDP - per capita (PPP):" not in soup.text:
+            GDPcapita = 'None'
+        else:
+            GDPcapita = soup.body.find(text='GDP - per capita (PPP):').findNext('div')
+            GDPcapita = GDPcapita.text
+        if "(" in GDPcapita:
+            GDPcapitaDateEst = GDPcapita.split('(')[1]
+            GDPcapita = GDPcapita.split('(')[0]
+
+
         #GDP - real growth rate:
         if "GDP - real growth rate:" not in soup.text:
             GDPgrowth = 'None'
@@ -68,7 +79,7 @@ with open("cleanCountries.csv") as csvfileA:
             GDPgrowth = soup.body.find(text='GDP - real growth rate:').findNext('div')
             GDPgrowth = GDPgrowth.text
         if "(" in GDPgrowth:
-            GDPgrowthaDateEst = GDPgrowth.split('(')[1]
+            GDPgrowthDateEst = GDPgrowth.split('(')[1]
             GDPgrowth = GDPgrowth.split('(')[0]
 
 
