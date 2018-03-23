@@ -15,8 +15,6 @@ with open("cleanCountries.csv") as csvfileA:
             countryCode = (row['Code'])
             response = requests.get('https://www.cia.gov/library/publications/the-world-factbook/geos/' + countryCode +'.html')
             soup = bs.BeautifulSoup(response.text, 'lxml')
-            
-            #population
             population = soup.body.find(text='Population:').findNext('div')
             population = population.text
             if "(" in population:
@@ -26,6 +24,7 @@ with open("cleanCountries.csv") as csvfileA:
                 population = population.split('total:')[1]
             if "United Kingdom" in population:
                 population = population.split('United Kingdom')[1]
-            
-            #write the data to csv
+            if "million" in population:
+                population = population.split(' million')[0]
+                population = (float(population) * 1000000)
             writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population})
