@@ -19,4 +19,4 @@ with open("cleanCountries.csv") as csvfileA:
             popGrowthDateEst = populationGrowth.split('(')[1]
             populationGrowth = populationGrowth.split('(')[0]
 
-        print(populationGrowth)
+        print(countryName + " " + populationGrowth)
