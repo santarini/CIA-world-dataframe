@@ -54,6 +54,30 @@ with open("cleanCountries.csv") as csvfileA:
                 popGrowthDateEst = populationGrowth.split('(')[1]
                 populationGrowth = populationGrowth.split('(')[0]
             
+            #GDP (purchasing power parity):
+            if "GDP (purchasing power parity):" not in soup.text:
+                GDPppp = 'None'
+            else:
+                GDPppp = soup.body.find(text='GDP (purchasing power parity):').findNext('div')
+                GDPppp = GDPppp.text
+            if "(" in GDPppp:
+                GDPpppDateEst = GDPppp.split('(')[1]
+                GDPppp = GDPppp.split('(')[0]
+            if "million" in GDPppp:
+                GDPppp = GDPppp.split('million')[0]
+                GDPppp = GDPppp[1:]
+                GDPppp = float(GDPppp) * 10**6
+            elif "billion" in GDPppp:
+                GDPppp = GDPppp.split('billion')[0]
+                GDPppp = GDPppp[1:]
+                GDPppp = float(GDPppp) * 10**9
+            elif "trillion" in GDPppp:
+                GDPppp = GDPppp.split('trillion')[0]
+                GDPppp = GDPppp[1:]
+                GDPppp = float(GDPppp)
+                GDPppp = int(GDPppp) * 10**12
+            
+            
             #print to csv
             writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population, 'Population Growth Rate': populationGrowth})
 
