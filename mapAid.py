@@ -23,5 +23,42 @@ with open("cleanCountries.csv") as csvfileA:
             popGrowthDateEst = populationGrowth.split('(')[1]
             populationGrowth = populationGrowth.split('(')[0]
 
+        #Country name:
+        if "Country name:" not in soup.text:
+            shortName = 'None'
+            longName = 'None'
+        else:
+            longName = soup.body.find(text='Country name:').findNext('div')
+            longName = longName.text
+            shortName = soup.body.find(text='Country name:').findNext('div').findNext('div')
+            shortName = shortName.text
+        if "conventional long form: " in longName:
+            longName = longName.split('conventional long form: ')[1]
+        if "conventional short form: " in shortName:
+            shortName = shortName.split('conventional short form: ')[1]
 
-        print(countryName + " " + populationGrowth)
+        #GDP (purchasing power parity):
+        if "GDP (purchasing power parity):" not in soup.text:
+            GDPppp = 'None'
+        else:
+            GDPppp = soup.body.find(text='GDP (purchasing power parity):').findNext('div')
+            GDPppp = GDPppp.text
+        if "(" in GDPppp:
+            GDPpppDateEst = GDPppp.split('(')[1]
+            GDPppp = GDPppp.split('(')[0]
+        if "million" in GDPppp:
+            GDPppp = GDPppp.split('million')[0]
+            GDPppp = GDPppp[1:]
+            GDPppp = float(GDPppp) * 1000000
+        if "billion" in GDPppp:
+            GDPppp = GDPppp.split('billion')[0]
+            GDPppp = GDPppp[1:]
+            GDPppp = float(GDPppp) * 1000000000
+####            GDPppp = float(GDPppp) * 1000000000
+##        if "trillion" in GDPppp:
+##            GDPppp = GDPppp.split('trillion')[0]
+##            GDPppp = GDPppp[1:]
+##            GDPppp = float(GDPppp)
+####            GDPppp = int(GDPppp) * 1000000000000
+
+        print(GDPppp)
