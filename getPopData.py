@@ -25,7 +25,7 @@ with open("cleanCountries.csv") as csvfileA:
             if "total:" in population:
                 population = population.split('total:')[1]
             if "United Kingdom" in population:
-                population = population.split('"United Kingdom"')[1]
+                population = population.split('United Kingdom')[1]
             
             #write the data to csv
             writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population})
