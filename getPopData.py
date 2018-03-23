@@ -16,10 +16,12 @@ with open("cleanCountries.csv") as csvfileA:
             response = requests.get('https://www.cia.gov/library/publications/the-world-factbook/geos/' + countryCode +'.html')
             soup = bs.BeautifulSoup(response.text, 'lxml')
             population = soup.body.find(text='Population:').findNext('div')
-            #if population contains a (
-                #take text before (
-            #if population starts with 'total:'
-                #extract text after 'total:'
-            #if population starts with 'United Kingdom"
-                #extract text after 'United Kingdom'
-            writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population.text})
+            population = population.text
+            if "(" in population:
+                dateEst = population.split('(')[1]
+                population = population.split('(')[0]
+            if "total:" in population:
+                population = population.split('total:')[1]
+            if "United Kingdom" in population:
+                population = population.split('"United Kingdom"')[1]
+            writer.writerow({'Country': countryName , 'Code': countryCode,'Population': population})
