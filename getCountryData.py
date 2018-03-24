@@ -112,6 +112,17 @@ with open("cleanCountries.csv") as csvfileA:
                 medianAge = medianAge.split('total: ')[1]
             if "years" in medianAge:
                 medianAge = medianAge.split('years')[0]
+                
+            #Capital:
+            if "Capital:" not in soup.text:
+                capital = 'Not listed'
+            else:
+                capital = soup.body.find(text='Capital:').findNext('div')
+                capital = capital.text
+            if "name: " in capital:
+                capital = capital.split('name: ')[1]
+            if "capital: " in capital:
+                capital = capital.split('capital: ')[1]
             
             #print to csv
             writer.writerow({'Region': regionName,'Code': countryCode, 'Short Name': shortName,'Long Name': longName,'Population': population, 'Population Growth Rate': populationGrowth, 'GDP (PPP)':GDPppp , 'GDP per Capita':GDPcapita, 'GDP Growth Rate':GDPgrowth})
