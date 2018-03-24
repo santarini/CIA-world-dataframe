@@ -99,6 +99,20 @@ with open("cleanCountries.csv") as csvfileA:
                 GDPgrowth = GDPgrowth.split('(')[0]
             
             
+            #Median age:
+            if "Median age:" not in soup.text:
+                medianAge = 'Not listed'
+            else:
+                medianAge = soup.body.find(text='Median age:').findNext('div')
+                medianAge = medianAge.text
+            if "(" in GDPgrowth:
+                medianAgeDateEst = medianAge.split('(')[1]
+                medianAge = medianAge.split('(')[0]
+            if "total: " in medianAge:
+                medianAge = medianAge.split('total: ')[1]
+            if "years" in medianAge:
+                medianAge = medianAge.split('years')[0]
+            
             #print to csv
             writer.writerow({'Region': regionName,'Code': countryCode, 'Short Name': shortName,'Long Name': longName,'Population': population, 'Population Growth Rate': populationGrowth, 'GDP (PPP)':GDPppp , 'GDP per Capita':GDPcapita, 'GDP Growth Rate':GDPgrowth})
             
