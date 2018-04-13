@@ -82,5 +82,26 @@ with open("cleanCountries.csv") as csvfileA:
             GDPgrowthDateEst = GDPgrowth.split('(')[1]
             GDPgrowth = GDPgrowth.split('(')[0]
 
+        #Median age:
+        if "Median age:" not in soup.text:
+            medianAge = 'Not listed'
+        else:
+            medianAge = soup.body.find(text='Median age:').findNext('div')
+            medianAge = medianAge.text
+        if "total: " in medianAge:
+            medianAge = medianAge.split('total: ')[1]
+        if "years" in medianAge:
+            medianAge = medianAge.split('years')[0]
 
-        print(GDPcapita)
+        #Capital:
+        if "Capital:" not in soup.text:
+            capital = 'Not listed'
+        else:
+            capital = soup.body.find(text='Capital:').findNext('div')
+            capital = capital.text
+        if "name: " in capital:
+            capital = capital.split('name: ')[1]
+        if "capital: " in capital:
+            capital = capital.split('capital: ')[1]
+
+        print(countryName + ": "+ capital)
